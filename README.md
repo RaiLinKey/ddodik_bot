@@ -8,7 +8,7 @@ API_KEY=API_KEY
 USERS=user_id_1,user_id_2,user_id_3,user_id_4
 ```
 
-API_KEY - ключ API бота. Можно получить с помощью BotFather(https://t.me/BotFather).
+API_KEY - ключ API бота. Можно получить с помощью [BotFather](https://t.me/BotFather).
 user_id_n - id пользователей телеграм в формате int. Нужны для фановых штук. Если не нужно, то можно написать любое число.
 
 Нужно учесть, что должен быть хотябы один user_id. При этом нужно проследить, чтобы в `main.py` не было обращения к индексу USERS больше, чем количество указано user_id
