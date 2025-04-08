@@ -5,7 +5,10 @@
 Крайне рекомендую создать файл окружения .env в таком формате:
 ```
 API_KEY=API_KEY
-USERS=user_id_1,user_id_2,user_id_3,user_id_4
+TZAR=user_id_1,user_id_2
+KICK_HIM=user_id_3,user_id_2
+YES_TRUE=user_id_4
+FULL_YES_TRUE_OFF=-group_id
 ```
 
 API_KEY - ключ API бота. Можно получить с помощью [BotFather](https://t.me/BotFather).
