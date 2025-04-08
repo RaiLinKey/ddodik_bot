@@ -4,7 +4,8 @@ from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters.command import Command
 from random import randint
 
-from config.consts import API_KEY, USERS
+from config.consts import API_KEY
+from fun_module import tzar_detected, kstati, kick_him, yes_true, pdd_prikol
 
 
 HELLO_MESSAGE = '''Привет, я переделываю ссылки для инсты так, чтобы у них был предпросмотр.
@@ -32,15 +33,20 @@ async def text_process(message: types.Message, msg_txt: str):
     
     if link_index >= 0:
         link = msg_txt[link_index:].split(' ')[0]
+        
+        await pdd_prikol(message, link)
+        
         ddlink = link.replace('instagram.com', 'ddinstagram.com')
         
-        if message.from_user.id == USERS[0] and get_chance(6, 16):
-            await message.answer(f'ХОЛОПАМ МОЛЧАТЬ!\nЕго величество МАРК вещает!\n\n{ddlink}')
-        else:
-            await message.answer(ddlink)
+        ddlink = tzar_detected(message, ddlink)
+        
+        await message.answer(ddlink)
     
-    if "кстати" in msg_txt.lower():
-        await message.answer('кстати насчeт фоты раком')
+    await kstati(message, msg_txt)
+    
+    await kick_him(message)
+    
+    await yes_true(message)
     
     # Пока не нужно, потом пригодится
     # if message.from_user.id == USERS[2] and message.entities:
@@ -48,12 +54,6 @@ async def text_process(message: types.Message, msg_txt: str):
     #         if entity.type == 'blockquote':
     #             await message.answer('Да, верно')
     #             break
-    
-    if message.from_user.id in [USERS[2]] and get_chance(80, 95):
-        await message.reply('Да, верно')
-    
-    if message.from_user.id == USERS[1] and get_chance():
-        await message.answer(f'Да ебать. Опять @{message.from_user.username} кикнть не получилось')
 
 
 @dp.message(Command('start'))
